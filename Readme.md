@@ -1,23 +1,24 @@
 # Top Player Picks Analysis
 
-This Python script analyzes player prediction data from a LightGBM regressor and quantile model to determine the top 5 basketball player picks. The selection is based on the predicted points relative to a specified "line," with dynamic margins used to filter the best candidates.
+This Python script suite includes `std_diff.py` and `abs_diff.py`, which analyze player prediction data from a LightGBM regressor and quantile model to determine the top 5 basketball player picks. `std_diff.py` focuses on standardized differences between predicted points and a specified "line," using dynamic margins to isolate the best candidates. Conversely, `abs_diff.py` utilizes absolute differences to perform a similar analysis, ensuring a robust selection process in both methods. Each script employs a distinct approach to filtering and selecting players based on their predicted performances, providing versatile tools for sports analytics.
+
 
 ## Features
 
-- **Dynamic Margin Filtering:** Starts with a 2-point margin between predicted points and the line, incrementally increasing by 2 points until 5 players are selected.
-- **Model Alignment:** Considers players whose predictions are either above or below the line as specified by the model's "over" or "under" pick.
-- **Output Information:** Displays the player's name, predicted points, the line, and the model's pick (over/under).
+- **Standardized Difference Calculation:** Calculates the difference between each player's predicted performance and a "line", standardizing these differences to focus on significant deviations.
+- **Dynamic Margin Filtering:** Begins with a 2-point margin and incrementally increases by 0.5 points. The search stops when no more players meet the increasing margin criteria or when the margin exceeds 10 points.
+- **Model Pick Alignment:** Considers the model's "over" or "under" pick, ensuring that selections align with predictive insights.
+- **Output Information:** Outputs the player's name, predicted points, the line, and whether the pick is 'over' or 'under' for those who meet the selection criteria.
 
 ## Requirements
 
-To run this script, you'll need Python installed on your system along with the following Python libraries:
+To run this script, ensure Python is installed on your system along with the following Python libraries:
 - `pandas`
 - `openpyxl` (for handling Excel files)
 
-You can install these dependencies via pip:
+Install these dependencies via pip:
 ```bash
 pip install pandas openpyxl
-
 ```
 
 ## Usage
@@ -36,5 +37,11 @@ pip install pandas openpyxl
 
 2. **Run the Script**: Execute the script in your Python environment. Ensure you are in the directory containing the script and run:
    ```bash
-   python picks.py
+   python std_diff.py
+   ```
+   or 
+
+   ```bash
+   python abs_diff.py
+   ```
 
