@@ -29,6 +29,10 @@ def get_top_players(data, initial_margin=2, increment=0.5, max_margin=10):
 top_5_players = get_top_players(data)
 if not top_5_players.empty:
     print("Top 5 Players based on the criteria:")
-    print(top_5_players[['player_name', 'regression_predictions_MAIN', 'line', 'model_pick']])
+    print(top_5_players.rename(columns={
+        'player_name': 'Player Name',
+        'regression_predictions_MAIN': 'Prediction',
+        'model_pick': 'Pick'
+    })[['Player Name', 'Prediction', 'Pick']])
 else:
     print("No players met the selection criteria.")
