@@ -1,6 +1,6 @@
 import pandas as pd
 
-file_path = 'predictions.xlsx'
+file_path = 'predictions_3.xlsx'
 data = pd.read_excel(file_path)
 data['diff'] = data['regression_predictions_MAIN'] - data['line']
 data['std_diff'] = (data['diff'] - data['diff'].mean()) / data['diff'].std()
