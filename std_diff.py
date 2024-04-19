@@ -1,8 +1,8 @@
 import pandas as pd
 
-file_path = 'predictions_3.xlsx'
+file_path = 'predictions_5.xlsx'
 data = pd.read_excel(file_path)
-data['diff'] = data['regression_predictions_MAIN'] - data['line']
+data['diff'] = data['regression_predictions_mean'] - data['line']
 data['std_diff'] = (data['diff'] - data['diff'].mean()) / data['diff'].std()
 
 def get_top_players(data, initial_margin=2, increment=0.5, max_margin=10):
@@ -31,7 +31,7 @@ if not top_5_players.empty:
     print("Top 5 Players based on the criteria:")
     print(top_5_players.rename(columns={
         'player_name': 'Player Name',
-        'regression_predictions_MAIN': 'Prediction',
+        'regression_predictions_mean': 'Prediction',
         'model_pick': 'Pick'
     })[['Player Name', 'Prediction', 'Pick']])
 else:
